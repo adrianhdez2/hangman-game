@@ -1,0 +1,239 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: #fff;
+}
+
+:root {
+    font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+    user-select: none;
+}
+
+body {
+    background-color: #000813;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    display: none;
+    align-items: end;
+    justify-content: center;
+    background-color: #0008137c;
+    padding: 50px;
+}
+
+.alert {
+    width: 250px;
+    font-size: 12px;
+    background-color: #071931;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: 10px;
+    column-gap: 10px;
+    box-shadow: 0px 0px 5px #071931;
+    color: #fff;
+    border: none;
+    outline: none;
+    transition: all .3s ease-in-out;
+}
+
+.alert svg {
+    width: 15px;
+    height: 15px;
+    transition: all .3s ease-in-out;
+    fill: #fff;
+}
+
+.alert:hover,
+.alert:active {
+    cursor: pointer;
+    background-color: #0a2141;
+    box-shadow: 0px 0px 5px #0a2141;
+}
+
+.alert:hover svg,
+.alert:active svg  {
+    transform: rotate(260deg);
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+header h1 {
+    font-size: 18px;
+}
+
+header p,
+header p a {
+    font-size: 14px;
+    color: #ffffff7e;
+}
+
+main {
+    width: 80%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.left {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    position: relative;
+    border: 7px solid #fff;
+    border-bottom: none;
+    padding-bottom: 10px;
+}
+
+.left::before {
+    content: '';
+    width: 7px;
+    height: 14%;
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.container_stick_human {
+    width: auto;
+    height: 90%;
+    transform-origin: top center;
+    animation: swing 2s ease-in-out infinite alternate;
+}
+
+.stick_human {
+    stroke: #fff;
+    stroke-width: 10;
+    fill: none;
+}
+
+.right {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.words,
+.letters {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.letter_word {
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 17px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-bottom: 3px solid #034668;
+    text-align: center;
+}
+
+.letter {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #0A161E;
+    border: 1px solid #0C202D;
+    border-radius: 5px;
+    color: #ffffffb2;
+    padding: 10px;
+    box-shadow: 4px 4px 4px #0000006f;
+    transition: all .5s ease;
+}
+
+.letter:hover,
+.letter:active {
+    background-color: #0e1f2a;
+}
+
+.letter:not(:disabled) {
+    cursor: pointer;
+}
+
+.letter:disabled {
+    background-color: #060d12;
+    color: #5d5d5d;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(5deg);
+    }
+
+    100% {
+        transform: rotate(-5deg);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .left {
+        width: 70%;
+        height: 300px;
+        margin-bottom: 10px;
+    }
+
+    .right {
+        width: 100%;
+        height: auto;
+        row-gap: 20px;
+        padding: 0;
+    }
+
+    .panel {
+        padding: 10px;
+    }
+}

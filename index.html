@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <title>Hangman game</title>
+</head>
+
+<body>
+    <header>
+        <h1>Hangman game</h1>
+        <p>Por <a href="https://github.com/adrianhdez2" target="_blank">Adrián Hdez</a></p>
+    </header>
+    <main>
+        <section class="left">
+            <svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg"
+                xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
+                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns1="http://sozi.baierouge.fr"
+                xmlns:xlink="http://www.w3.org/1999/xlink" id="svg4013" class="container_stick_human"
+                viewBox="0 0 168.38 357.72" version="1.1" inkscape:version="0.48.4 r9939">
+                <g id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer"
+                    transform="translate(-165.46 -71.804)">
+                    <g id="g3982" transform="translate(15.143 -322.57)" class="human">
+                        <!-- Body parts -->
+                    </g>
+                </g>
+            </svg>
+
+
+        </section>
+        <section class="right">
+            <div class="words">
+                <!-- Empty letters -->
+            </div>
+            <div class="letters">
+                <button type="button" class="letter" value="A">A</button>
+                <button type="button" class="letter" value="B">B</button>
+                <button type="button" class="letter" value="C">C</button>
+                <button type="button" class="letter" value="D">D</button>
+                <button type="button" class="letter" value="E">E</button>
+                <button type="button" class="letter" value="F">F</button>
+                <button type="button" class="letter" value="G">G</button>
+                <button type="button" class="letter" value="H">H</button>
+                <button type="button" class="letter" value="I">I</button>
+                <button type="button" class="letter" value="J">J</button>
+                <button type="button" class="letter" value="K">K</button>
+                <button type="button" class="letter" value="L">L</button>
+                <button type="button" class="letter" value="M">M</button>
+                <button type="button" class="letter" value="N">N</button>
+                <button type="button" class="letter" value="O">O</button>
+                <button type="button" class="letter" value="P">P</button>
+                <button type="button" class="letter" value="Q">Q</button>
+                <button type="button" class="letter" value="R">R</button>
+                <button type="button" class="letter" value="S">S</button>
+                <button type="button" class="letter" value="T">T</button>
+                <button type="button" class="letter" value="U">U</button>
+                <button type="button" class="letter" value="V">V</button>
+                <button type="button" class="letter" value="W">W</button>
+                <button type="button" class="letter" value="X">X</button>
+                <button type="button" class="letter" value="Y">Y</button>
+                <button type="button" class="letter" value="Z">Z</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="panel">
+        <button type="button" class="alert">
+            <span>Loading...</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                    d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z" />
+            </svg>
+        </button>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
