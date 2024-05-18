@@ -55,96 +55,142 @@ const WORDS = [
     "TRABAJO"
 ];
 
-let word
-let tempWord = []
-let attempts = 0
-let innerGlobal = ''
 
-const $human = document.querySelector('.human')
-const $words = document.querySelector('.words')
-const $letters = document.querySelectorAll('.letter')
-const $panel = document.querySelector('.panel')
-const $alert = document.querySelector('.alert')
 
-function loadLetters() {
-    word = WORDS[randomIndex() - 1]
-    loadWordTemp()
-}
+window.addEventListener('DOMContentLoaded', () => {
+    let word
+    let tempWord = []
+    let attempts = 0
+    let innerGlobal = ''
 
-$alert.addEventListener("click", () => {
-    window.location.reload()
-})
+    const visited = localStorage.getItem('visited')
+    const $human = document.querySelector('.human')
+    const $words = document.querySelector('.words')
+    const $letters = document.querySelectorAll('.letter')
+    const $panel = document.querySelector('.panel')
+    const $alert = document.querySelector('.alert')
+    const $tool = document.querySelector('.tool')
 
-function loadWordTemp() {
-    for (let i = 0; i < word.length; i++) {
-        tempWord.push('')
+    function loadLetters() {
+        word = WORDS[randomIndex() - 1]
+        loadWordTemp()
     }
-    loadLettersEmpty()
-}
 
-function randomIndex() {
-    return Math.floor(Math.random() * WORDS.length + 1);
-}
-
-function loadLettersEmpty() {
-    let inner = ''
-    tempWord.forEach(item => {
-        inner += `<input type="text" class="letter_word" maxlength="1" value="${item}" disabled>`
+    $alert.addEventListener("click", () => {
+        window.location.reload()
     })
 
-    $words.innerHTML = inner
-}
+    function loadWordTemp() {
+        for (let i = 0; i < word.length; i++) {
+            tempWord.push('')
+        }
+        loadLettersEmpty()
+    }
 
-function validar(e) {
-    const { target } = e
-    const { value } = target
-    target.setAttribute("disabled", true)
-    let isOver = false
+    function randomIndex() {
+        return Math.floor(Math.random() * WORDS.length + 1);
+    }
 
-    let temp = word.split('')
-    for (let i = 0; i < temp.length; i++) {
-        if (temp[i] === value) {
-            tempWord[i] = value
-            isOver = true
+    function loadLettersEmpty() {
+        let inner = ''
+        tempWord.forEach(item => {
+            inner += `<input type="text" class="letter_word" maxlength="1" value="${item}" disabled>`
+        })
+
+        $words.innerHTML = inner
+    }
+
+    function validar(letter) {
+
+        $letters.forEach(key => {
+            if (key.getAttribute('value') === letter) {
+                key.setAttribute('disabled', true)
+            }
+        })
+
+
+        let isOver = false
+
+        let temp = word.split('')
+        for (let i = 0; i < temp.length; i++) {
+            if (temp[i] === letter) {
+                tempWord[i] = letter
+                isOver = true
+            }
+        }
+
+
+        if (attempts >= 0 && attempts <= 5) {
+            if (!isOver) {
+                if (attempts >= 5) {
+                    $alert.querySelector('span').textContent = "¡Ooops! Intentalo de nuevo"
+                    $panel.style.display = "flex"
+                }
+                loadHuman();
+            } else {
+                loadLettersEmpty();
+                if (tempWord.filter(temp => temp === '').length === 0) {
+                    $alert.querySelector('span').textContent = "¡Genial! Intenta con otra palabra"
+                    $panel.style.display = "flex"
+                    setTimeout(showConfetti(), 300)
+                }
+            }
+
         }
     }
 
+    function loadHuman() {
+        innerGlobal += HUMAN[attempts].path
+        $human.innerHTML = innerGlobal
+        attempts += 1;
+    }
 
-    if (attempts >= 0 && attempts <= 5) {
-        if (!isOver) {
-            if (attempts >= 5) {
-                $alert.querySelector('span').textContent = "¡Ooops! Intentalo de nuevo"
-                $panel.style.display = "flex"
-            }
-            loadHuman();
-        } else {
-            loadLettersEmpty();
-            if (tempWord.filter(temp => temp === '').length === 0) {  
-                $alert.querySelector('span').textContent = "¡Genial! Intenta con otra palabra"              
-                $panel.style.display = "flex"
-                setTimeout(showConfetti(), 300)
-            }
+    $letters.forEach(letter => {
+        letter.addEventListener("click", e => validar(e.target.value))
+    })
+
+    window.addEventListener("keydown", (e) => {
+        if (e.key >= 'a' && e.key <= 'z') {
+            validar(e.key.toUpperCase())
+        }
+    })
+
+    function showConfetti() {
+        confetti({
+            particleCount: 200,
+            spread: 70,
+            origin: { y: 0.8 },
+        });
+    }
+
+    if (detectDevice() == 'Desktop' && !visited) {
+
+        $tool.style.opacity = 1
+        setTimeout(() => {
+            $tool.style.opacity = 0
+        }, 5000);
+
+        localStorage.setItem('visited', true)
+    }
+
+    function detectDevice() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        if (/android/i.test(userAgent)) {
+            return "Android";
         }
 
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+        }
+
+        if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+        }
+
+        return "Desktop";
     }
-}
 
-function loadHuman() {
-    innerGlobal += HUMAN[attempts].path
-    $human.innerHTML = innerGlobal
-    attempts += 1;
-}
 
-$letters.forEach(letter => {
-    letter.addEventListener("click", e => validar(e))
+    loadLetters()
 })
-
-function showConfetti() {
-    confetti({
-        particleCount: 200,
-        spread: 70,
-        origin: { y: 0.8 },
-    });
-}
-
-loadLetters()

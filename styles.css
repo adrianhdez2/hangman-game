@@ -72,7 +72,7 @@ body {
 }
 
 .alert:hover svg,
-.alert:active svg  {
+.alert:active svg {
     transform: rotate(260deg);
 }
 
@@ -202,6 +202,17 @@ main {
 .letter:disabled {
     background-color: #060d12;
     color: #5d5d5d;
+}
+
+.tool {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    margin-top: 10px;
+    font-size: 12px;
+    background-color: rgb(42, 107, 42);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 @keyframes swing {
